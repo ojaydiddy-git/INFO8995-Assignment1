@@ -1,0 +1,5 @@
+I containerized a static HTML page using Docker and Nginx. The Dockerfile uses the nginx:1.25-alpine image for a lightweight container. I copied the HTML file to the default nginx web directory.
+
+The image was built using `docker build -t html-app:v1 .` and run using `docker run -d -p 8080:80 html-app:v1`. The application displays a static web page on localhost:8080.
+
+The main challenge was ensuring that the file paths in the Dockerfile matched nginx’s structure. Once corrected, the page loaded successfully.
