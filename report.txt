@@ -3,3 +3,18 @@ I containerized a static HTML page using Docker and Nginx. The Dockerfile uses t
 The image was built using `docker build -t html-app:v1 .` and run using `docker run -d -p 8080:80 html-app:v1`. The application displays a static web page on localhost:8080.
 
 The main challenge was ensuring that the file paths in the Dockerfile matched nginx’s structure. Once corrected, the page loaded successfully.
+
+I containerized a Python Flask application using Docker. The app simply returns "Hello from a Dockerized Static HTML page!" on the root route. I created a Dockerfile that uses python:3.11, which is a slim base image to keep the image lightweight.
+I followed best practices such as using a specific
+	Image version, 
+    Creating a non-root user, 
+	Setting environment variables, 
+	Exposing only the needed port (8080). 
+
+I copied the requirements.txt file first to take advantage of Docker’s layer caching, and then copied the application code.
+I built the Docker image using docker build -t html -app:v1 . and ran it using docker run -d -p 8080:80 -html-app -v1.
+ 
+I used a volume bind mount so I could update the source code locally and see changes reflected in the container without rebuilding.
+One challenge I faced was forgetting to switch to a non-root user, which caused a warning. After adding the USER directive in the Dockerfile, the warning disappeared.
+
+The final container runs smoothly and serves the web page on localhost:8080.
